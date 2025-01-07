@@ -14,6 +14,8 @@ pipeline {
                         "apt install golang-go -y
                         cd /home/devxonic/Projects/go-lang; \
                         ls -la; \
+
+                        npm init
                         
                         npm run build; \
                         go version; \
