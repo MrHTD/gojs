@@ -34,6 +34,7 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
                     "systemctl status goweb.service; \
                     systemctl start goweb.service; \
+                    systemctl reload goweb.service; \
                     systemctl status goweb.service"                    
                     '''
                 }
