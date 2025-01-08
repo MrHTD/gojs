@@ -34,7 +34,6 @@ pipeline {
                             echo "This directory is not a Git repository! Exiting."
                             exit 1
                         fi
-                        #git pull origin main
                         "
                     '''
                 }
