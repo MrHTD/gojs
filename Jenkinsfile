@@ -32,10 +32,11 @@ pipeline {
                 sshagent(credentials: ['ssh']) {
                     sh '''
                     ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
-                    "sudo systemctl status goweb.service;
-                    sudo systemctl start goweb.service;
-                    sudo systemctl reload goweb.service;
-                    sudo systemctl status goweb.service"                    
+                    "export SUDO_ASKPASS=/tmp/mypass.sh;
+                    sudo -A systemctl status goweb.service;
+                    sudo -A systemctl start goweb.service;
+                    sudo -A systemctl reload goweb.service;
+                    sudo -A systemctl status goweb.service"                    
                     '''
                 }
             }
