@@ -13,9 +13,9 @@ func main() {
 		fmt.Fprintf(w, "Server is running!")
 	})
 
-	// Start the server on port 8080
-	fmt.Println("Server is starting on port 8080...")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	// Start the server on port 4000
+	fmt.Println("Server is starting on port 4000...")
+	if err := http.ListenAndServe(":4000", nil); err != nil {
 		fmt.Println("Error starting server:", err)
 	}
 }
