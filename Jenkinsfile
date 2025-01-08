@@ -49,9 +49,10 @@ pipeline {
                     sh '''
                     ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
                     "export SUDO_ASKPASS=/tmp/mypass.sh;
-                    sudo -A systemctl status goweb.service || true;
-                    sudo -A systemctl start goweb.service;
-                    sudo -A systemctl reload goweb.service;
+                    sudo -A systemctl status goweb.service;
+                    
+                    sudo -A systemctl restart goweb.service;
+                    
                     sudo -A systemctl status goweb.service"                    
                     '''
                 }
