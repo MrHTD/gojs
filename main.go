@@ -10,7 +10,7 @@ func main() {
 	// Handle requests to the root URL ('/')
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		// Respond with a simple message
-		fmt.Fprintf(w, "Server is running!")
+		fmt.Fprintf(w, "Server is running on 4000!")
 	})
 
 	// Start the server on port 4000
