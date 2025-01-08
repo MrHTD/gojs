@@ -11,7 +11,8 @@ pipeline {
                     echo "Connecting to machine..."
                     sh '''
                         ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
-                        "apt install golang-go -y;
+                        "export SUDO_ASKPASS=/tmp/mypass.sh;
+                        sudo -A apt install golang-go -y;
                         cd /home/devxonic/Projects/go-lang;
                         ls -la;
 
