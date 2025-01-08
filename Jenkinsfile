@@ -17,7 +17,25 @@ pipeline {
                     sh '''
                         ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
                         "cd /home/devxonic/Projects/go-lang;
-                        git pull origin main || echo 'Failed to pull latest code. Ensure the repository is properly set up.'"
+
+                        # Check if this is a Git repository
+                        if [ -d .git ]; then
+                            echo "Git repository found."
+        
+                            # Check the current branch
+                            CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+                            if [ "$CURRENT_BRANCH" = "main" ]; then
+                                echo "On main branch. Pulling latest changes..."
+                                git pull origin main || { echo "Failed to pull latest changes."; exit 1; }
+                            else
+                                echo "Not on main branch. Current branch is $CURRENT_BRANCH."
+                            fi
+                        else
+                            echo "This directory is not a Git repository! Exiting."
+                            exit 1
+                        fi
+                        #git pull origin main
+                        "
                     '''
                 }
             }
