@@ -5,6 +5,11 @@ pipeline {
         SSH_HOST = '192.168.100.14'
     }
     stages {
+        stage("Start") {
+            steps {
+                echo "Go-Lang Pipeline Execution Started."
+            }
+        }
         stage("Git Pull") {
             steps {
                 sshagent(['ssh']) {
@@ -55,6 +60,17 @@ pipeline {
                     
                     sudo -A systemctl status goweb.service"                    
                     '''
+                }
+            }
+        }
+        stage("End") {
+            steps {
+                script {
+                    if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
+                        echo "Pipeline completed successfully. 🎉"
+                    } else {
+                        echo "Pipeline encountered errors. Please check the logs. ❌"
+                    }
                 }
             }
         }
