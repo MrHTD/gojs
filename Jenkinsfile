@@ -24,21 +24,19 @@ pipeline {
                             jq '.scripts.build="echo No build script defined"' package.json > temp.json && mv temp.json package.json
                         fi
 
-                        # Run npm build (if applicable)
-                        npm run build || echo "Skipping npm build as no meaningful script is defined;
+                        npm run build;
 
                         # Build the Go application
-                        if [ -f main.go ]; then
+                        if [ main.go ]; then
                             go build -o goweb main.go
                         else
                             echo "main.go not found!"
                             exit 1
                         fi
                         
-                        npm run build;
                         go version;
 
-                        go build main.go;
+                        # go build main.go;
                         
                         ls -la"
                     '''
