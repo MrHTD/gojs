@@ -16,6 +16,7 @@ pipeline {
                     '''
                 }
             }
+        }
         stage("SSH") {
             steps {
                     sshagent(['ssh']){
