@@ -15,7 +15,7 @@ pipeline {
                         cd /home/devxonic/Projects/go-lang;
                         ls -la;
 
-                        npm init;
+                        npm init -y;
                         
                         npm run build;
                         go version;
