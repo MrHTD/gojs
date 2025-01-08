@@ -11,16 +11,16 @@ pipeline {
                     echo "Connecting to machine..."
                     sh '''
                         ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
-                        "apt install golang-go -y
-                        cd /home/devxonic/Projects/go-lang; \
-                        ls -la; \
+                        "apt install golang-go -y;
+                        cd /home/devxonic/Projects/go-lang;
+                        ls -la;
 
-                        npm init; \
+                        npm init;
                         
-                        npm run build; \
-                        go version; \
+                        npm run build;
+                        go version;
 
-                        go build main.go; \
+                        go build main.go;
                         
                         ls -la"
                     '''
@@ -32,10 +32,10 @@ pipeline {
                 sshagent(credentials: ['ssh']) {
                     sh '''
                     ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
-                    "sudo -n systemctl status goweb.service; \
-                    sudo -n systemctl start goweb.service; \
-                    sudo -n systemctl reload goweb.service; \
-                    sudo -n systemctl status goweb.service"                    
+                    "sudo systemctl status goweb.service;
+                    sudo systemctl start goweb.service;
+                    sudo systemctl reload goweb.service;
+                    sudo systemctl status goweb.service"                    
                     '''
                 }
             }
