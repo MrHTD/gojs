@@ -5,6 +5,17 @@ pipeline {
         SSH_HOST = '192.168.100.14'
     }
     stages {
+        stage("Git Pull") {
+            steps {
+                sshagent(['ssh']) {
+                    echo "Pulling latest code from Git repository..."
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST \
+                        "cd /home/devxonic/Projects/go-lang;
+                        git pull origin main || echo 'Failed to pull latest code. Ensure the repository is properly set up.'"
+                    '''
+                }
+            }
         stage("SSH") {
             steps {
                     sshagent(['ssh']){
