@@ -29,11 +29,7 @@ pipeline {
                         cd /home/devxonic/Projects/go-lang;
                         ls -la;
 
-                        # Initialize npm (if needed)
-                        if [ ! package.json ]; then
-                            npm init -y
-                            jq '.scripts.build="echo No build script defined"' package.json > temp.json && mv temp.json package.json
-                        fi
+                        npm init -y
 
                         npm run build;
 
